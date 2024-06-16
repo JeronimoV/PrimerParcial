@@ -317,7 +317,7 @@ def calcular_porcentaje(lista_peliculas):
 
     #(cantidad_ocupada/100)*cantidad_total
     
-def mostrar_por_genero(lista_peliculas):
+def mostrar_por_genero(lista_peliculas): #MEJORAR: Actividad hecha con poco tiempo, es necesario revisarla y mejorarla
     generos_vistos = []
     
     lista_resultados = []
