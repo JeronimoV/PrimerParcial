@@ -14,10 +14,7 @@ def validar_titulo(peliculas:list[dict]) -> str:
     
 
     while flag:
-        print(titulo_ingresado)
-        print(titulo_ingresado)
         peliculas_encontradas = buscar_peliculas(peliculas, "Titulo", titulo_ingresado, False)
-        print("Este es eplis encontradas", peliculas_encontradas)
         if peliculas_encontradas == None :
             flag = False
         else:

@@ -1,5 +1,6 @@
 from validaciones import *
 from funciones.utilidades import *
+from manipulacion_archivos import crear_json
 
 def crear_pelicula(lista_peliculas) :
     """_summary_
@@ -100,7 +101,7 @@ def modificar_pelicula(lista_peliculas,titulo:str) -> None:
 
     for i in range(len(lista_de_acciones)):
         print(lista_de_acciones[i])
-        
+    return "Ejecucion completada"
 
 
 def eliminar_pelicula(lista_peliculas,titulo:str) -> str:
@@ -235,6 +236,7 @@ def buscar_pelicula_titulo(lista_peliculas,Titulo):
     if resultado == None:
         return "Pelicula no encontrada!"
     formatear_texto([resultado])
+    return "Ejecucion completada"
 
 def calcular_promedio(lista_peliculas):
     """Calcula el promedio teniendo en cuenta la seleccion
@@ -309,9 +311,49 @@ def calcular_porcentaje(lista_peliculas):
                 else:
                     contador_no += 1
                     
-            print(contador_si)
             resultado_si = (contador_si*100)/len(lista_peliculas)
             resultado_no = (contador_no*100)/len(lista_peliculas)
             return f"El porcentaje de Si es : {resultado_si}, el de No es: {resultado_no}"
 
     #(cantidad_ocupada/100)*cantidad_total
+    
+def mostrar_por_genero(lista_peliculas):
+    generos_vistos = []
+    
+    lista_resultados = []
+    
+    #Lista_generos es un tuple creado en el archivo validaciones, la cual contiene todos los generos
+    
+    for i in range(len(lista_generos)):
+        existe_genero = generos_vistos.count(f"{lista_generos[i]}")
+        
+        if existe_genero < 1:
+            resultados = buscar_peliculas(lista_peliculas, "Genero", lista_generos[i],True)
+            generos_vistos.append(lista_generos[i])
+            if resultados != None:
+                lista_resultados.append(resultados)
+            
+    generos_usados = []
+    peliculas_usadas = []
+    for i in range(len(lista_resultados)):
+        peliculas_genero = []
+        mensaje = ""
+        genero = ""
+        total = 0
+        for l in range(len(lista_resultados[i])):
+            if mensaje == "":
+                mensaje = lista_resultados[i][l]["Genero"] + ": " + lista_resultados[i][l]["Titulo"]
+                genero = lista_resultados[i][l]["Genero"]
+                generos_usados.append(lista_resultados[i][l]["Genero"])
+                peliculas_genero.append(lista_resultados[i][l]["Titulo"])
+                total += 1
+            else:
+                mensaje = mensaje + " ," + lista_resultados[i][l]["Titulo"]
+                peliculas_genero.append(lista_resultados[i][l]["Titulo"])
+                total += 1
+        peliculas_usadas.append(peliculas_genero)
+        print(mensaje)
+        print(f"Total de peliculas de genero {genero}: {total}")
+        total = 0
+    crear_json(peliculas_usadas, generos_usados)
+    return "Operacion Finalizada"

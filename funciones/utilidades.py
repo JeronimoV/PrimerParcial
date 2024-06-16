@@ -21,14 +21,13 @@ def formatear_texto(lista_texto:list[dict]) -> None:
     Args:
         lista_texto (list[dict]): Es la lista con la informacion que quiero formatear
     """    
-    print(lista_texto)
     if len(lista_texto) == 0:
         print("No hubo peliculas encontradas con los datos proporcionados")
     else:
         
         print(""""
-*****************************************************************************************
-|   "Titulo"   |    "Genero"    |   "Año de Lanzamiento"    |   "Duracion"  |   "ATP"   |
+*************************************************************************************************************
+|   "Titulo"   |    "Genero"    |   "Año de Lanzamiento"    |   "Duracion"  |   "ATP"   |   "Plataformas    | 
 -----------------------------------------------------------------------------------------""")
         for i in range(len(lista_texto)):
             plataformas = ""
@@ -50,7 +49,6 @@ def buscar_peliculas(lista_busqueda:list , clave:str, valor, buscar_varios:bool 
         list[dict]: Si buscar_varios es True y todo salio bien, devuelve todas las coincidencias
         dict: Si buscar_varios es False y todo salio bien, devuelve solo una coincidencia
     """    
-    print(valor)
     lista_peliculas = []
     retorno = None
     for i in range(len(lista_busqueda)):

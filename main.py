@@ -20,7 +20,8 @@ def iniciar_app() -> None:
         6. Buscar pelicula por titulo
         7. Calcular promedio
         8. Calcular porcentaje
-        9. Salir
+        9. Mostrar por genero
+        10. Salir
         """)
         seleccion = input("Elije una opcion: ")
         match seleccion:
@@ -28,7 +29,7 @@ def iniciar_app() -> None:
                 print(crear_pelicula(lista_peliculas))
             case "2":
                 pelicula_seleccionada = input("Que pelicula quieres modificar?")
-                modificar_pelicula(lista_peliculas,pelicula_seleccionada)
+                print(modificar_pelicula(lista_peliculas,pelicula_seleccionada))
             case "3":
                 pelicula_seleccionada = input("Que pelicula quieres eliminar?")
                 print(eliminar_pelicula(lista_peliculas,pelicula_seleccionada))
@@ -37,13 +38,15 @@ def iniciar_app() -> None:
             case "5":
                 ultimo_ordenamiento = ordenar_peliculas(lista_peliculas)
             case "6":
-                pelicula_seleccionada = input("Que pelicula quieres eliminar?")
+                pelicula_seleccionada = input("Que pelicula quieres buscar?")
                 print(buscar_pelicula_titulo(lista_peliculas,pelicula_seleccionada))
             case "7":
                 print(calcular_promedio(lista_peliculas))
             case "8":
                 print(calcular_porcentaje(lista_peliculas))
             case "9":
+                mostrar_por_genero(lista_peliculas)
+            case "10":
                 if len(ultimo_ordenamiento) > 0:
                     guardar_peliculas(ultimo_ordenamiento)
                 else:

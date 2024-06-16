@@ -1,1 +1,1 @@
-print(type(titulo))
+print

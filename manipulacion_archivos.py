@@ -1,3 +1,5 @@
+import json
+
 def cargar_peliculas():
     """Carga las peliculas desde el csv
 
@@ -76,8 +78,24 @@ def guardar_peliculas(lista_peliculas):
                 
         plataformas = plataformas + "\n"
         
-        print(plataformas)
-        
         formato_guardar = f"{posicion["ID"]},{posicion["Titulo"]},{posicion["Genero"]},{posicion["Año_de_Lanzamiento"]},{posicion["Duracion"]},{posicion["ATP"]},{plataformas}"
         archivo.write(formato_guardar)
+    archivo.close()
+    
+def crear_json(peliculas, generos):
+    formato = {}
+        
+    for i in range(len(peliculas)):
+        formato[generos[i]] = peliculas[i]
+    
+    #for j in range(len(generos)):
+    #    peliculas_genero = []
+    #    for i in range(len(peliculas)):
+    #        for l in range(len(peliculas[i])):
+    #            peliculas_genero.append(f"{peliculas[i][l]}\n")
+    #    formato.append({generos[j]: peliculas_genero})
+    #    peliculas_genero = []
+
+    archivo = open("peliculas.json", "w")
+    json.dump(formato, archivo, indent=4)
     archivo.close()
